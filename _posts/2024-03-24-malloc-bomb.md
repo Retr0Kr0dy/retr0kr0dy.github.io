@@ -25,7 +25,9 @@ This forkbomb defines a shell function that recursively calls itself creating an
 
 What if we used the following malloc bomb instead?
 
-***while true; do echo $(</dev/zero) & done***
+```shell
+while true; do echo $(</dev/zero) & done
+```
 
 If you check your cpu and memory usage (*memory usage, not allocation*) you should see that they are not much affected by the malloc bomb.
 
@@ -47,13 +49,15 @@ This malloc bomb looks simple, and it is.
 
 First the **while** loop.
 
-***while true; do ... & done***
+```shell
+while true; do ... & done
+```
 
-This is a simple infinite loop, but, the ***& done*** means that the loop is not waiting for the function (content of ***...***) to finish, instead, it simply ends the loop (with the function still running in a background process) and repeat while ***true*** is ...true.
+This is a simple infinite loop, but, the ```& done``` means that the loop is not waiting for the function (content of ```...```) to finish, instead, it simply ends the loop (with the function still running in a background process) and repeat while ```true``` is ...true.
 
 Then the interesting part.
 
-***echo $(</dev/zero)***
+```echo $(</dev/zero)```
 
 First, some syntax ;
 
@@ -67,7 +71,7 @@ First, some syntax ;
 
 Now that we are good with what each individual command does we can now try to understand the malloc bomb and why it's a malloc bomb.
 
-When the ***<...*** try to read the ***/dev/zero*** content to return it to the ***$(...)*** statement it first needs to allocate memory before reading it.
+When the ```<...``` try to read the ```/dev/zero``` content to return it to the ```$(...)``` statement it first needs to allocate memory before reading it.
 
 When the kernel tries to allocate memory it comes to a point where no more memory can be allocated, therefore, stalling any new process attempting to be created.
 
@@ -80,14 +84,16 @@ If you are a player you can still kill the process that initiate the bomb, it wi
 
 Blocking this bomb on your system is pretty easy and straight forward.
 
-Simply use ***ulimit*** command to block the maximum virtual memory allocated by a process and the maximum number of processes that a user can create.
+Simply use ```ulimit``` command to block the maximum virtual memory allocated by a process and the maximum number of processes that a user can create.
 
-***ulimit -v 1048576 # Limit virtual memory alloation for each process to 1GB***
-***ulimit -u 10000 # Limit user created processes to 10,000***
+```shell
+ulimit -v 1048576 # Limit virtual memory alloation for each process to 1GB
+ulimit -u 10000 # Limit user created processes to 10,000
+```
 
 Or
 
-Removing read permission on ***/dev/zero*** (not advisable). But, if something other than root needs ***\00*** to be returned, it **WILL** cause issues. It should be funny to see.
+Removing read permission on ```/dev/zero``` (not advisable). But, if something other than root needs ```\00``` to be returned, it **WILL** cause issues. It should be funny to see.
 
 **Warning:**
 *This is a really bad fix. Do this only if you are dumb.*
@@ -103,14 +109,6 @@ Just slap the command in the prompt no permission needed, no weird bin needed, o
 You could modify the init script of a system to execute this malloc bomb during the boot sequence, thus, stalling the system without easy/verbose debug axis (beside viewing diff in init script...) and never breaking a the same moment.
 
 ## References :
-
-
-```C
-void main()
-{
-    return 0;
-}
-```
 
 - [https://docs.kernel.org/admin-guide/cpu-load.html](https://docs.kernel.org/admin-guide/cpu-load.html)
 - [https://docs.kernel.org/admin-guide/device-mapper/zero.html](https://docs.kernel.org/admin-guide/device-mapper/zero.html)
