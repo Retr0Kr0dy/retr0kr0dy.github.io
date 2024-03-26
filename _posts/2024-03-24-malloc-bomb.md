@@ -57,7 +57,9 @@ This is a simple infinite loop, but, the ```& done``` means that the loop is not
 
 Then the interesting part.
 
-```echo $(</dev/zero)```
+```shell
+echo $(</dev/zero)
+```
 
 First, some syntax ;
 
