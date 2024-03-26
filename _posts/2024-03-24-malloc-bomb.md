@@ -1,8 +1,10 @@
-|title|
-|-|
-|Malloc-bomb|
+---
+title: Malloc-bomb
+---
 
 # Stressing kernel for fun
+
+Author: akpalanaza
 
 ## Summary
 
@@ -74,10 +76,10 @@ When the kernel tries to allocate memory it comes to a point where no more memor
 
 If you are a player you can still kill the process that initiate the bomb, it will also stop every child process thus ending the denial of service. 
 
-> [!NOTE]
-Technical explanation could be either partially wrong or not fully accurate, if you want to rephrase and/or improve it, feel free to **PR**.
+**Note:**
+*Technical explanation could be either partially wrong or not fully accurate, if you want to rephrase and/or improve it, feel free to **PR**.*
 
-# Remediation
+## Remediation
 
 Blocking this bomb on your system is pretty easy and straight forward.
 
@@ -92,10 +94,10 @@ Or
 
 Removing read permission on `/dev/zero` (not advisable). But, if something other than root needs `\00` to be returned, it **WILL** cause issues. It should be funny to see.
 
-> [!WARNING]
-This is a really bad fix. Do this only if you are dumb.
+**Warning:**
+*This is a really bad fix. Do this only if you are dumb.*
 
-# Usecases
+## Usecases
 
 #### Whenever you have access to linux shell
 
