@@ -1,16 +1,19 @@
 |title|
 |-|
-Malloc-bomb
+|Malloc-bomb|
 
-# Summary
+# Stressing kernel for fun
+
+## Summary
 
 - [What is this?](#What-is-this?)
 - [Why?](#Why?)
 - [How?](#How?)
 - [Remediation](#Remediation)
 - [Usecases](#Usecases)
+- [References](#References)
 
-# What-is-this?
+## What-is-this?
 
 Do you remember `:(){ :|:& };:` forkbomb?  funny indeed but  not as much as what we could do.
 
@@ -32,11 +35,11 @@ Linux load is calculated as the average number of processes in a runnable or uni
 
 Creating an enormous malloc forces the kernel to allocate all available memory, thus, causing a stall in the creation of any new tasks. ([see How ? for more explanation](#How))
 
-# Why?
+## Why?
 
 Cause it's way funnier like this.
 
-# How?
+## How?
 
 This malloc bomb looks simple, and it is.
 
@@ -56,12 +59,12 @@ echo $(</dev/zero)
 
 First, some syntax ;
 
-| Name or function | Description                                                                         | Example                 | Example result                                         |
-| ---------------- | ----------------------------------------------------------------------------------- | ----------------------- | ------------------------------------------------------ |
-| *echo*           | Display content on terminal.                                                        | `echo "Hello world!!!"` | `Hello world!!!`                                       |
-| *$(...)*         | Return the result of `...` command execution.                                       | `echo "r=$(uname)"`     | `r=Linux`                                              |
-| *<  \<file\>*    | Return content of file.                                                             | `echo < a.txt`          | `AAA`                                                  |
-| */dev/zero*      | Kernel special device file that provides an endless stream of null bytes when read. | `cat /dev/zero`         | no output (only `\00` so it's not printed in terminal) |
+|Name or function| Description| Example| Example result|
+|-|-|-|-|
+| *echo*| Display content on terminal.| *echo "Hello world!!!"* | *Hello world!!!*|
+| *$(...)*| Return the result of *...* command execution.|*echo "r=$(uname)"*|*r=Linux*|
+| *<  \<file\>*| Return content of file.| *echo < a.txt*|*AAA*|
+| */dev/zero*| Kernel special device file that provides an endless stream of null bytes when read. | *cat /dev/zero*| no output (only *\00* so it's not printed in terminal) |
 
 Now that we are good with what each individual command does we can now try to understand the malloc bomb and why it's a malloc bomb.
 
@@ -102,10 +105,10 @@ Just slap the command in the prompt no permission needed, no weird bin needed, o
 
 You could modify the init script of a system to execute this malloc bomb during the boot sequence, thus, stalling the system without easy/verbose debug axis (beside viewing diff in init script...) and never breaking a the same moment.
 
----
-*Discovered with fun by akpalanaza*
-
-##### References :
+## References :
 
 - [https://docs.kernel.org/admin-guide/cpu-load.html](https://docs.kernel.org/admin-guide/cpu-load.html)
 - [https://docs.kernel.org/admin-guide/device-mapper/zero.html](https://docs.kernel.org/admin-guide/device-mapper/zero.html)
+
+---
+*Discovered with fun by akpalanaza*
