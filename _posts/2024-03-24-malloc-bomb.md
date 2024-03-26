@@ -82,9 +82,10 @@ Blocking this bomb on your system is pretty easy and straight forward.
 
 Simply use ***ulimit*** command to block the maximum virtual memory allocated by a process and the maximum number of processes that a user can create.
 
-***ulimit -v 1048576 # Limit virtual memory alloation for each process to 1GB***
-
-***ulimit -u 10000 # Limit user created processes to 10,000***
+```sh
+ulimit -v 1048576 # Limit virtual memory alloation for each process to 1GB
+ulimit -u 10000 # Limit user created processes to 10,000
+```
 
 Or
 
