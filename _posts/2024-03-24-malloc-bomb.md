@@ -73,8 +73,8 @@ When the kernel tries to allocate memory it comes to a point where no more memor
 
 If you are a player you can still kill the process that initiate the bomb, it will also stop every child process thus ending the denial of service. 
 
-**Note:**
-*Technical explanation could be either partially wrong or not fully accurate, if you want to rephrase and/or improve it, feel free to **PR**.*
+> [!NOTE]
+Technical explanation could be either partially wrong or not fully accurate, if you want to rephrase and/or improve it, feel free to **PR**.
 
 ## Remediation
 
