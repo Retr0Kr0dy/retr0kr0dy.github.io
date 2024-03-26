@@ -6,6 +6,8 @@ title: Malloc-bomb
 
 Author: akpalanaza
 
+Just playing with bash and memory allocation.
+
 ## Summary
 
 - [What is this?](#What-is-this?)
@@ -67,6 +69,7 @@ First, some syntax ;
 | *$(...)*| Return the result of *...* command execution.|*echo "r=$(uname)"*|*r=Linux*|
 | *<  \<file\>*| Return content of file.| *echo < a.txt*|*AAA*|
 | */dev/zero*| Kernel special device file that provides an endless stream of null bytes when read. | *cat /dev/zero*| no output (only *\00* so it's not printed in terminal) |
+
 
 Now that we are good with what each individual command does we can now try to understand the malloc bomb and why it's a malloc bomb.
 
