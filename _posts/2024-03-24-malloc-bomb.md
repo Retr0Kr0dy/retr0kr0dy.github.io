@@ -73,8 +73,8 @@ When the kernel tries to allocate memory it comes to a point where no more memor
 
 If you are a player you can still kill the process that initiate the bomb, it will also stop every child process thus ending the denial of service. 
 
-> [!NOTE]
-Technical explanation could be either partially wrong or not fully accurate, if you want to rephrase and/or improve it, feel free to **PR**.
+**Note:**
+*Technical explanation could be either partially wrong or not fully accurate, if you want to rephrase and/or improve it, feel free to **PR**.*
 
 ## Remediation
 
@@ -82,10 +82,8 @@ Blocking this bomb on your system is pretty easy and straight forward.
 
 Simply use ***ulimit*** command to block the maximum virtual memory allocated by a process and the maximum number of processes that a user can create.
 
-```sh
-ulimit -v 1048576 # Limit virtual memory alloation for each process to 1GB
-ulimit -u 10000 # Limit user created processes to 10,000
-```
+***ulimit -v 1048576 # Limit virtual memory alloation for each process to 1GB***
+***ulimit -u 10000 # Limit user created processes to 10,000***
 
 Or
 
