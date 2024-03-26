@@ -19,7 +19,7 @@ Just playing with bash and memory allocation.
 
 ## What-is-this?
 
-Do you remember ***:(){ :|:& };:*** forkbomb?  funny indeed but  not as much as what we could do.
+Do you remember `:(){ :|:& };:` forkbomb?  funny indeed but  not as much as what we could do.
 
 This forkbomb defines a shell function that recursively calls itself creating an exponential number of child processes until system resources are exhausted.
 
